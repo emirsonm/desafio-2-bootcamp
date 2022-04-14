@@ -45,6 +45,7 @@ EXPOSE 5050
 CMD python3 /home/myapp/desafio2_app.py
 EOF
 #### BUILD CONTAINER
+cd $TEMP
 docker build -t python_app .
 #### START CONTAINER
 docker run -t -d -p 5050:5050 --name python_app python_app
