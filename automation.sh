@@ -30,7 +30,7 @@ sample = Flask(__name__)
 
 @sample.route("/")
 def main():
-    return render_template("index.html")
+    return render_template("index. -fhtml")
 
 if __name__ == "__main__":
     sample.run(host="0.0.0.0", port=5050)
@@ -49,3 +49,9 @@ cd $TEMP
 docker build -t python_app .
 #### START CONTAINER
 docker run -t -d -p 5050:5050 --name python_app python_app
+#### STATUS CONTAINER
+sleep 2
+STATUS=$(docker ps -a -f name=python_app |grep "python_app")
+echo $STATUS |awk '{ print "CONTENEDOR ", $14, $9, $10, $11}'
+
+
