@@ -3,7 +3,12 @@
 export TEMP=./tempdir
 export TEMPLATES=$TEMP/templates
 export STATIC=$TEMP/static
-
+export RED='\033[0;31m'
+export NC='\033[0m' # No Color
+if [ -d $TEMP ]
+then
+rm -fr $TEMP
+fi
 mkdir $TEMP
 mkdir $TEMPLATES
 mkdir $STATIC
@@ -52,6 +57,6 @@ docker run -t -d -p 5050:5050 --name python_app python_app
 #### STATUS CONTAINER
 sleep 2
 STATUS=$(docker ps -a -f name=python_app |grep "python_app")
-echo $STATUS |awk '{ print "CONTENEDOR ", $14, $9, $10, $11}'
+echo $STATUS |awk '{ print "CONTENEDOR ", "\033[32m"$14, $9, $10, $11"\033[0m"}' 
 
 
