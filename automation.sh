@@ -35,3 +35,13 @@ def main():
 if __name__ == "__main__":
     sample.run(host="0.0.0.0", port=5050)
 EOF
+cat << EOF >$TEMP/Dockerfile
+FROM python
+RUN pip install flask
+COPY ./static /home/myapp/static/
+COPY ./templates /home/myapp/templates/
+COPY desafio2_app.py /home/myapp/
+EXPOSE 5050
+CMD python3 /home/myapp/desafio2_app.py
+EOF
+
